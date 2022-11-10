@@ -1,37 +1,31 @@
+from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPClassifier
-from sklearn.preprocessing import OrdinalEncoder
 import pandas as pd
 import numpy as np
-import sys
 
-df = pd.read_csv("data/bank-full.csv", sep=";")
+raw_df = pd.read_csv("data/bank-full.csv", sep=";")
 
-print(df)
+for column in raw_df.columns:
+    column_dtype = raw_df[column].dtype
+    if str(column_dtype) == "object":
+        # print(f"Column: {column} and type {column_dtype}")
+        dummy = pd.get_dummies(raw_df[column], prefix=column, drop_first=True)
+        raw_df = pd.concat([raw_df, dummy], axis=1).drop(column, axis=1)
 
-enc = OrdinalEncoder()
+print("Pre-Processed Training Dataset", raw_df)
 
-X_train = df.iloc[:,:-1]
-y_train = df.iloc[:,-1]
+X = raw_df.iloc[:,:-1]
+y = raw_df.iloc[:,-1]
 
-enc.fit(X_train)
-enc.transform()
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
 
-sys.exit()
-y_train = df.iloc[:,-1]
-
-# print(X_train)
-# print(y_train)
+# print(X_train_r)
+# print(y_train_r)
 
 clf = MLPClassifier(solver='sgd', alpha=1e-5,
                     hidden_layer_sizes=(5, 2), random_state=1)
 
 clf.fit(X_train, y_train)
-
-df2 = pd.read_csv("data/bank-additional.csv", sep=";")
-X_test = df2.iloc[:,:-1]
-y_test = df2.iloc[:,-1]
-
-y_predict = clf.predict(X_test)
 
 accuracy = clf.score(X_test, y_test)
 
