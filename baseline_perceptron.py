@@ -3,7 +3,7 @@ from sklearn.linear_model import Perceptron
 import pandas as pd
 import numpy as np
 
-raw_df = pd.read_csv("data/bank-full.csv", sep=";")
+raw_df = pd.read_csv("data/bank/bank-full.csv", sep=";")
 
 for column in raw_df.columns:
     column_dtype = raw_df[column].dtype
