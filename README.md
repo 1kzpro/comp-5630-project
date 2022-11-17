@@ -14,4 +14,5 @@ TBD.
 ### Project Structure
 - **data** folder contain data of the project to train and test.
 - **tutorials** folder contain useful notebooks and python codes with examples on how to use sklearn, preprocess data and etc.
+- **src** folder contain implementation for the project.
 
