@@ -1,7 +1,8 @@
+"""Module that contain function to pre-process the data."""
 from sklearn.model_selection import train_test_split
 import pandas as pd
 
-def generate_data(filepath, sep=";"):
+def preprocess_data(filepath, sep=";"):
     raw_df = pd.read_csv(filepath, sep=sep)
 
     for column in raw_df.columns:
