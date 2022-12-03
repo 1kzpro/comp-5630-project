@@ -2,10 +2,10 @@
 MLP Project for COMP 5630 Auburn University Fall 2022.
 
 ### Topic Description
-TBD.
+Online Ad Classification
 
 ### Dataset
-[Bank Marketing Data Set](https://archive.ics.uci.edu/ml/datasets/Bank+Marketing)
+[Online Advertising Data Set](https://archive.ics.uci.edu/ml//datasets/Internet+Advertisements)
 
 ### Project Members
 - Kazybek Mizam
